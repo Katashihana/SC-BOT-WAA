@@ -433,7 +433,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Helga Gz*",
+                  "title": "*Katashi Hana*",
                   "description": "pilh on/off",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -503,7 +503,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Helga Gz*",
+                  "title": "*Katashi Hana*",
                   "description": "pilh on/off",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -540,7 +540,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Helga Gz*",
+                  "title": "*Katashi Hana*",
                   "description": "pilh on/off",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -578,7 +578,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Helga Gz*",
+                  "title": "*Katashi Hana*",
                   "description": "pilh on/off",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -616,7 +616,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Helga Gz*",
+                  "title": "*Katashi Hana*",
                   "description": "pilh on/off",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -656,7 +656,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Helga Gz*",
+                  "title": "*Katashi Hana*",
                   "description": "pilh open/close",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -1396,6 +1396,8 @@ module.exports = handle = (client, Client) => {
                     }
                     break
                 case 'googleimage':
+                case 'image':
+                case 'gimage':
 				    try{
                     if(isLimit(data.sender)) return data.reply(mess.limit)
                     if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}googleimage [ query ]*\nContoh : ${data.prefix}googleimage kucing`)
@@ -1467,84 +1469,131 @@ module.exports = handle = (client, Client) => {
                     res = await axios.get(`${configs.apiUrl}/api/jadwaltv?apikey=${configs.zeksKey}&channel=${data.body}`)
                     data.reply(res.data.result)
                     break
-case 'jadian':
-              jds = []
-              jdii = groupMembers
-              koss = groupMembers
-              akuu = jdii[Math.floor(Math.random() * jdii.length)]
-              diaa = koss[Math.floor(Math.random() * koss.length)]
-              teks = `Ciee.. yang lagi jadian @${akuu.jid.split('@')[0]}  ( ) @${diaa.jid.split('@')[0]} `
-              jds.push(akuu.jid)
-              jds.push(diaa.jid)
-              mentions(teks, jds, true)
-              break
-       case 'cantik':
-              membr = []
-              const mes = groupMembers
-              const msk = groupMembers
-              const siaps = mes[Math.floor(Math.random() * mes.length)]
-              const sips = pushname[Math.floor(Math.random() * msk.length)]
-              teks = `*Yang Paling Cantik Disini Adalah :* @${siaps.jid.split('@')[0]}`
-              membr.push(siaps.jid)
-              mentions(teks, membr, true)
-              break
-       case 'ganteng':
-              membr = []
-              const nus = groupMembers
-              const msl = groupMembers
-              const siapss = nus[Math.floor(Math.random() * nus.length)]
-              const sipss = pushname[Math.floor(Math.random() * msl.length)]
-              teks = `*Masih Gantengan Owner Gua :* @${siapss.jid.split('@')[0]}`
-              membr.push(siapss.jid)
-              mentions(teks, membr, true)
-              break
-       case 'babi':
-              membr = []
-              const meg = groupMembers
-              const mge = groupMembers
-              const ba = meg[Math.floor(Math.random() * meg.length)]
-              const bi = pushname[Math.floor(Math.random() * mge.length)]
-              teks = `*Yang Paling Babi Disini Adalah :* @${ba.jid.split('@')[0]}`
-              membr.push(ba.jid)
-              mentions(teks, membr, true)
-              break
-       case 'beban':
-              membr = []
-              const nge = groupMembers
-              const tod = groupMembers
-              const beb = nge[Math.floor(Math.random() * nge.length)]
-              const an = pushname[Math.floor(Math.random() * tod.length)]
-              teks = `*Yang Paling Beban Disini Adalah :* @${beb.jid.split('@')[0]}`
-              membr.push(beb.jid)
-              mentions(teks, membr, true)
-              break
-       case 'cekwatak':
-              var namao = pushname
-              var prfx = await Client.getProfilePicture(sender)
-              const watak = ['top deh pokoknya','penyayang','pemurah','Pemarah','Pemaaf','Penurut','Baik','baperan','Baik-Hati','penyabar','UwU','Suka Membantu']
-              const wtk = watak[Math.floor(Math.random() * (watak.length))]
-              const ratenyaasu = ['100%','95%','90%','85%','80%','75%','70%','65%','60%','55%','50%','45%','40%','35%','30%','25%','20%','15%','10%','5%']
-              const akhlak = ratenyaasu[Math.floor(Math.random() * (ratenyaasu.length))]
-              const sifat = ['Penolong','Suka Membantu','Saling Menolong','Perhatian','Ngak Cuek','Romantis','Dermawan','Cool','Peduli Kepada Sesama','Suka Berkata Kasar']
-              const sft = sifat[Math.floor(Math.random() * (sifat.length))]
-              const hobby = ['Memasak','Membantu Atok','Mabar','Nobar','Coli','Colkyy','Sosmedtan','Membantu Orang lain','Nonton Anime','Nonton Drakor','Naik Motor','Nyanyi','Menari','Bertumbuk','Menggambar','Foto fotoan Ga jelas','Maen Game','Berbicara Sendiri']
-              const hby = hobby[Math.floor(Math.random() * (hobby.length))]
-              const kelebihan = ['Soleh dan Soleha','Pintar','Rajin','Teladan']
-              const klbh = kelebihan[Math.floor(Math.random() * (kelebihan.length))]
-              const tipe = ['cool','idaman','Alami','Keren','Ideal','Dia Bamget','normal','elite','epic','Legend']
-              const typo = tipe[Math.floor(Math.random() * (tipe.length))]
-              await reply(`[ INTROGASI SUKSES ]\n\n[Nama]:${namao}\n\n[Watak]:${wtk}\n\n[Akhlak]:${akhlak}\n\n[Sifat]:${sft}\n\n[Hobby]:${hby}\n\n[Tipe]:${typo}\n\n[Kelebihan]:${klbh}\n\nNote\n\n_ini hanya main main_`)
-              break
-                     case 'cekmati':
-              if (!q) return reply(mess.wrongFormat)
-              predea = await axios.get(`https://api.agify.io/?name=${q}`)
-              reply(`Nama : ${predea.data.name}\n*Mati Pada Umur :* ${predea.data.age} Tahun.\n\n_Cepet Cepet Tobat Bro Soalnya Mati ga ada yang tau_`)
-              break
-case 'kickall': // Anti Banned
-              for (let i of groupMembers) {
-              await kickMember(from, [i.jid])
+case 'wame':
+if(isLimit(data.sender)) return data.reply(mess.limit)
+Client.updatePresence(from, Presence.composing)
+options = {
+text: `Link WhatsApp-Mu : *wa.me/${sender.split("@s.whatsapp.net")[0]}*\n*Or ( / )*\n*api.whatsapp.com/send?phone=${sender.split("@")[0]}*`,
+contextInfo: {
+mentionedJid: [sender]
 }
+}
+Client.sendMessage(from, options, MessageType.text, {quoted: faketroli})
+break
+case 'play2':
+case 'ytdl2':
+if(isLimit(data.sender)) return data.reply(mess.limit)
+data.reply(mess.wait)
+if (!q) return reply(`Example : ${prefix + command} dj tutu 30 detik`)
+res = await yts(q).catch(e => {
+reply('_[ ! ] Error Yang Anda Masukan Tidak Ada_')
+})
+let thumbInfo = `*Youtube Play▶️*
+               
+📜 Judul : ${res.all[0].title}
+📬 ID : ${res.all[0].videoId}
+🌐 Publikasi : ${res.all[0].ago}
+🎞️ Ditonton : ${res.all[0].views}
+⚖️ Durasi : ${res.all[0].timestamp}
+🎥 Channel : ${res.all[0].author.name}
+🖇️ Link : ${res.all[0].author.url}`
+
+buttons = [{buttonId:`${prefix}buttonvideo ${res.all[0].url}`,buttonText:{displayText:'🎥VIDEO'},type:1},{buttonId:`${prefix}buttonmusic ${res.all[0].url}`,buttonText:{displayText:'🎵AUDIO'},type:1}]
+imageMessage = (await frnzer.prepareMessageMedia({url:res.all[0].image},'imageMessage',{thumbnail:Buffer.alloc(0)})).imageMessage
+buttonsMessage = {contentText: thumbInfo,footerText:'Silahkan Pilih Jenis File Dibawah Ini',imageMessage,buttons,headerType:4}
+iniClient = await Client.prepareMessageFromContent(from,{buttonsMessage},{})
+Client.relayWAMessage(iniFernazer)
+break
+case 'bugreport':
+if (args.length < 1) return reply(`Ketik ${prefix}bugreport [fiturnya] [Error Nya Gimana]`) 
+teks = args.join(' ')
+reply('Terima Kasih Telah Melaporkan Bug Pada Owner, Jika Itu Sekedar Iseng Maka Akan Di Ban Oleh Bot!')
+Client.sendMessage('6289626029135@s.whatsapp.net',`*INFO DARI PENGGUNA*\n*Bug Report:* ${teks}`, text)
+break
+case 'loliv':
+       case 'lolivid':
+       case 'lolivideo':
+       if(isLimit(data.sender)) return data.reply(mess.limit)
+              data.reply(mess.wait)
+              anu = await fetchText('https://raw.githubusercontent.com/AlvioAdjiJanuar/random/main/loli.txt')
+             .then(async (body) => {
+              anu = body.split('\n')
+              anu = anu[Math.floor(Math.random() * anu.length)]
+              sendMediaURL(from, anu)
+})
+             .catch(async (err) => {
+              console.error(err)
+              reply(`${err}`)
+})
               break
+       case 'nekopoi3d':
+       case '3dnekopoi':
+       case '3dnekopoilast':
+       if(isLimit(data.sender)) return data.reply(mess.limit)
+              data.reply(mess.wait)
+              try {
+              bsangee = await axios.get(`https://api.vhtear.com/neko3d&apikey=ZetsuBot`)
+              bsangee2 = bsangee.data
+              keluarplay = `*List update 3D JAV*\n`
+              for (let i = 0; i < bsangee2.result.length; i++) {
+              keluarplay += `\n\n\n*Judul* : ${bsangee2.result[i].title}\n*Deskripsi* : ${bsangee2.result[i].description}\n*Link* : ${bsangee2.result[i].url}\n`
+}
+              reply(keluarplay) 
+              } catch (err) {
+              console.log(err)
+              reply('error!')
+}
+               break
+        case 'nekopoicosplay':
+        case 'cosplaynekopoi':
+        if(isLimit(data.sender)) return data.reply(mess.limit)
+               try {
+               data.reply(mess.wait)
+               bsangbe = await axios.get(`https://api.vhtear.com/nekojavcosplay&apikey=ZetsuBot`)
+               bsangbe2 = bsangbe.data
+               keluarplay = `*List update Cosplay JAV*\n`
+               for (let i = 0; i < bsangbe2.result.length; i++) {
+               keluarplay += `\n\n\n*Judul* : ${bsangbe2.result[i].title}\n*Deskripsi* : ${bsangbe2.result[i].detail}\n*Link* : ${bsangbe2.result[i].url}\n`
+}
+               reply(keluarplay)
+               } catch (err) {
+               console.log(err)
+}
+               break
+case 'request':
+if (args.length < 1) return reply(`Ketik ${prefix}request [fiturnya] [Error Nya Gimana]`) 
+teks = args.join(' ')
+reply('Terima Kasih Telah Request Fitur Baru Pada Owner, Jika Itu Sekedar Iseng Maka Akan Di Ban Oleh Bot!')
+Client.sendMessage('6289626029135@s.whatsapp.net',`*INFO DARI PENGGUNA*\n*Request Fitur:* ${teks}`, text)
+break
+case 'blocklist':
+teks = 'This is list of blocked number :\n'
+for (let block of blocked) {
+teks += `~> @${block.split('@')[0]}\n`
+}
+teks += `Total : ${blocked.length}`
+Client.sendMessage(from, teks.trim(), extendedText, {quoted: msg, contextInfo: {"mentionedJid": blocked}})
+break 
+case 'buttonmusic':
+if(!q) return reply('linknya?')
+data.reply(mess.wait)
+res = await yta(`${q}`).catch(e => {
+reply('_[ ! ] Error Saat Mengirim Audio_')
+})
+filesize = res
+if (Number(filesize) >= 100000) return reply('File Melebihi Dari 100 MB!')
+sendMediaURL(from, `${res.dl_link}`)
+break
+case 'buttonvideo':
+if(!q) return reply('linknya?')
+data.reply(mess.wait)
+res = await ytv(`${q}`).catch(e => {
+reply('_[ ! ] Error Saat Mengirim Video_')
+})
+filesize = res
+if (Number(filesize) >= 100000) return reply('File Melebihi Dari 100 MB!')
+sendMediaURL(from, `${res.dl_link}`,'nih kak')
+break
                 case 'tts':
                     if(isLimit(data.sender)) return data.reply(mess.limit)
                     if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}${data.command} [ code|teks ]*\nContoh : ${data.prefix}${data.command} id|hello world`)
@@ -1568,6 +1617,8 @@ case 'kickall': // Anti Banned
                     })
                     break
                 case 'linkgroup':
+                case 'linkgc':
+                case 'lgc':
                     if(!data.isGroup) return data.reply(mess.group)
                     if(!data.botIsAdmin) return data.reply(mess.botAdmin)
                     linkgc = await client.groupInviteCode(data.from)
