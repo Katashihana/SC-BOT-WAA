@@ -1400,45 +1400,6 @@ shorti = `*RESULT : ${okok}*`
 reply(shorti)
 }
 break
-case 'mutual':
-case 'cariteman':{
-if(isLimit(data.sender)) return data.reply(mess.limit)
-hem = getUserrRandomId(./lib/json/dataUser.json).replace('@s.whatsapp.net','')
-data.reply('Tunggu Sebentar, Sedang Mencari Seseorang...')
-try {
-ppimg = await Client.getProfilePicture(`${hem.split('@')[0]}@c.us`)
-} catch {
-ppimg = `${imagebb}`
-}
-
-teks = `Seseorang Telah Di Temukan, Semoga Cocok :v
-
-*Nomor : ${hem.split("@")[0]}*
-*Api : wa.me/${hem.split("@")[0]}*`
-gh = await getBuffer(ppimg)
-    const gambra = await Client.prepareMessage(from, gh, MessageType.image, {thumbnail: gambar})
-    const buttonsss = [{buttonId:`${prefix}mutual`,buttonText: {displayText: '➡️ NEXT ➡️'}, type: 1}]
-    const ButtonsMessages = {
-    contentText: teks,
-    buttons: buttonsss,
-    footerText: `BOT CREATED BY KATASHI`,
-    headerType: 4,
-    imageMessage: gambra.message.imageMessage
-    }
-  await Client.sendMessage(from, ButtonsMessages, MessageType.buttonsMessage, {contextInfo :{text: 'Hai',
-  "forwardingScore": 1000000000,
-  isForwarded: false,
-  sendEphemeral: false,
-  "externalAdReply": {
-  "title": `Untuk Memulai Obrolan`,
-  "body": `Klik Di Sini`,
-  "previewType": "PHOTO",
-  "thumbnailUrl": imagebbthumb,
-  "thumbnail": imagebbthumb,
-  "sourceUrl": `https://wa.me/${hem.split("@")[0]}?text=Hai`
-  }, mentionedJid:[hem]}, quoted : mek})
-  }
-  break
 case 'notif':
    if(isLimit(data.sender)) return data.reply(mess.limit)
                         if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}notif [ textnya ]*`)
