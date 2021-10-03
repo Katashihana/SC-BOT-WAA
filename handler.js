@@ -7,6 +7,7 @@ const fs = require('fs')
 let FormData = require('form-data')
 let fetch = require('node-fetch')
 const afkJs = require('./lib/afk')
+let dataUser = JSON.parse(fs.readFileSync('./lib/json/dataUser.json'))
 const moment = require('moment-timezone');
 const { mess, menu, ingfo, listCode } = require('./lib/text')
 const { color, getBuffer, convertMp3 } = require('./lib/func')
@@ -178,7 +179,7 @@ module.exports = handle = (client, Client) => {
         Client.cmd.on('waifu', async (data) => {
 			if(isLimit(data.sender)) return data.reply(mess.limit)
 			const res = await axios.get(`https://waifu.pics/api/sfw/waifu`)
-			const mediaMsg = await client.prepareMessageMedia(await getBuffer(res.data.url), 'imageMessage')
+			const mediaMsg = await culient.prepareMessageMedia(await getBuffer(res.data.url), 'imageMessage')
             const buttonMessage = {
 			      contentText: 'Waifu',
 				  footerText: 'Press the button below to get a random waifu image',
@@ -433,7 +434,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Katashi Hana*",
+                  "title": "*Helga Gz*",
                   "description": "pilh on/off",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -503,7 +504,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Katashi Hana*",
+                  "title": "*Helga Gz*",
                   "description": "pilh on/off",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -540,7 +541,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Katashi Hana*",
+                  "title": "*Helga Gz*",
                   "description": "pilh on/off",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -578,7 +579,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Katashi Hana*",
+                  "title": "*Helga Gz*",
                   "description": "pilh on/off",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -616,7 +617,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Katashi Hana*",
+                  "title": "*Helga Gz*",
                   "description": "pilh on/off",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -656,7 +657,7 @@ module.exports = handle = (client, Client) => {
             } else {
 				let po = client.prepareMessageFromContent(data.from, {
 					"listMessage":{
-                  "title": "*Katashi Hana*",
+                  "title": "*Helga Gz*",
                   "description": "pilh open/close",
                   "buttonText": "COMMANDS",
                   "listType": "SINGLE_SELECT",
@@ -916,7 +917,7 @@ module.exports = handle = (client, Client) => {
  	                 const mediaMsg = await client.prepareMessageMedia(await getBuffer(configs.imgUrl), 'imageMessage')
                      const buttonMessage = {
                            contentText: menu(data.prefix, data.pushname),
-                           footerText: '𝐖𝐇𝐀𝐓𝐒𝐀𝐏𝐏-𝐁𝐎𝐓',
+                           footerText: 'KATASHI-BOT',
                                 "contextInfo": {
 									  mentionedJid: [configs.ownerList[0]],
                                       participant: sender,
@@ -1317,6 +1318,170 @@ module.exports = handle = (client, Client) => {
                         data.reply(`Maaf jawaban tidak ditemukan`)
                     }
                     break
+case 'google':
+  case 'googles':
+  case 'gs':
+  case 'googlesearch':
+  if(isLimit(data.sender)) return data.reply(mess.limit)
+                        if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}gs [ query ]*\nContoh : ${data.prefix}gs siapa penemu lampu`)
+  data.reply(mess.wait)
+  anu = await fetchJson(`http://api.lolhuman.xyz/api/gsearch?apikey=7ef1e86bd8624c0edd8bd386&query=${q}`, {method: 'get'})
+  teks = `─ 「 *GOOGLE SEARCH* 」 ─\n\n*Hasil Pencarian Dari ${q}*\n\n`
+  o = 1
+  for (let plor of anu.result) {
+   teks += `*${o++}. ${plor.title}*\n*Desc :* ${plor.desc}\n*Link :* ${plor.link}\n━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━\n`
+  }
+  data.reply(teks.trim())
+  break
+case 'igtv': 
+case 'tvig': 
+case 'instagramtv':
+  if(isLimit(data.sender)) return data.reply(mess.limit)
+                        if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}igtv [ link ]*`)
+if (!isUrl) return reply('Linknya?')
+data.reply(mess.wait)
+anu = await fetchJson(`http://lolhuman.herokuapp.com/api/instagram?apikey=7ef1e86bd8624c0edd8bd386
+&url=${q}`, {method: 'get'})
+if (anu.error) return reply(anu.error)
+buffer = await getBuffer(anu.result)
+Client.sendMessage(from,buffer,video,{mimetype: 'video/mp4', quoted: mek})
+break
+case 'tiktokaudio':
+  case 'tiktokmusic':
+  if(isLimit(data.sender)) return data.reply(mess.limit)
+                        if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}tiktokmusik [ link ]*`)
+  if (!isUrl(args[0]) && !args[0].includes('tiktok')) return reply('Link Error')
+  ayo = await getBuffer(`http://api.lolhuman.xyz/api/tiktokmusic?apikey=${lolkey}&url=${args[0]}`)
+  Client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp3', filename: 'TiktokMusic-MUZZABOR.mp3', quoted: mek})
+  break
+case 'delete':
+  case 'del':
+  case 'd':
+  if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}d [ reply pesan bot ]*`)
+  Client.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
+  break
+case 'caripesan':
+  case 'searchmessage':
+  if(isLimit(data.sender)) return data.reply(mess.limit)
+                        if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}caripesan [ pesanya ]*`)
+  data.reply('Sedang Mencari Pesan...')
+  let v = await Client.searchMessages(q,from,10,1)
+  let s = v.messages
+  let el = s.filter(v => v.message)
+  el.shift()
+  try {
+  if(el[0].message.conversation == undefined) return
+  reply(`Ditemukan ${el.length} pesan`)
+  await sleep(3000)
+  for(let i = 0; i < el.length; i++) {
+  await Client.sendMessage(from,'Nih Pesannya',text,{quoted:el[i]})
+  }
+  } catch(e){
+  reply('Pesan tidak ditemukan!')
+  }           
+  break
+case 'tinyurl':{
+if(isLimit(data.sender)) return data.reply(mess.limit)
+                        if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}tinyurl [ linknya ]*`)
+if (!isUrl) return reply ('Link?')
+const fetchText = (url, optiono) => {
+return new Promise((resolve, reject) => {
+return fetch(url, optiono)
+.then(response => response.text())
+.then(text => resolve(text))
+.catch(err => {
+console.log(color(err,'red'))
+reject(err)
+})
+})
+}
+okok = await fetchText(`https://tinyurl.com/api-create.php?url=${q}`)
+shorti = `*RESULT : ${okok}*`
+reply(shorti)
+}
+break
+case 'mutual':
+case 'cariteman':{
+if(isLimit(data.sender)) return data.reply(mess.limit)
+hem = getUserrRandomId(./lib/json/dataUser.json).replace('@s.whatsapp.net','')
+data.reply('Tunggu Sebentar, Sedang Mencari Seseorang...')
+try {
+ppimg = await Client.getProfilePicture(`${hem.split('@')[0]}@c.us`)
+} catch {
+ppimg = `${imagebb}`
+}
+
+teks = `Seseorang Telah Di Temukan, Semoga Cocok :v
+
+*Nomor : ${hem.split("@")[0]}*
+*Api : wa.me/${hem.split("@")[0]}*`
+gh = await getBuffer(ppimg)
+    const gambra = await Client.prepareMessage(from, gh, MessageType.image, {thumbnail: gambar})
+    const buttonsss = [{buttonId:`${prefix}mutual`,buttonText: {displayText: '➡️ NEXT ➡️'}, type: 1}]
+    const ButtonsMessages = {
+    contentText: teks,
+    buttons: buttonsss,
+    footerText: `BOT CREATED BY KATASHI`,
+    headerType: 4,
+    imageMessage: gambra.message.imageMessage
+    }
+  await Client.sendMessage(from, ButtonsMessages, MessageType.buttonsMessage, {contextInfo :{text: 'Hai',
+  "forwardingScore": 1000000000,
+  isForwarded: false,
+  sendEphemeral: false,
+  "externalAdReply": {
+  "title": `Untuk Memulai Obrolan`,
+  "body": `Klik Di Sini`,
+  "previewType": "PHOTO",
+  "thumbnailUrl": imagebbthumb,
+  "thumbnail": imagebbthumb,
+  "sourceUrl": `https://wa.me/${hem.split("@")[0]}?text=Hai`
+  }, mentionedJid:[hem]}, quoted : mek})
+  }
+  break
+case 'notif':
+   if(isLimit(data.sender)) return data.reply(mess.limit)
+                        if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}notif [ textnya ]*`)
+   teks = `NOTIF DARI @${sender.split("@")[0]}\n*PESAN : ${body.slice(7)}*`
+   group = await Client.groupMetadata(from);
+   member = group['participants']
+   jids = [];
+   member.map(async adm => {
+   jids.push(adm.id.replace('c.us', 's.whatsapp.net'));
+   })
+   options = {
+   text: teks,
+   contextInfo: {
+   mentionedJid: jids
+   },
+   quoted: mek
+   }
+   await Client.sendMessage(from, options, text)
+   break
+case 'cecan':
+ case 'uhktyy':
+if(isLimit(data.sender)) return data.reply(mess.limit)
+ try {
+ data.reply(mess.wait)
+ let wipuu = (await axios.get(`https://raw.githubusercontent.com/MyZuyx/poto/main/${command}.json`)).data
+ let wipii = wipuu[Math.floor(Math.random() * (wipuu.length))]
+ fs.writeFileSync(`./image/cecan/${sender}.jpeg`, 
+ await getBuffer(wipii))
+ const ima = await Client.prepareMessage(from, fs.readFileSync(`./image/cecan/${sender}.jpeg`),  MessageType.image, {thumbnail: gambar})
+ const butto = [{buttonId:`${prefix+command}`,buttonText: {displayText: '⏩ NEXT ⏪'}, type: 1}]
+ const ButtonsMessagess = {
+ contentText: `Nih ${command} kak`,
+ buttons: butto,
+ footerText: `Klik Next Untuk Melanjutkan Ke Gambar Berikutnya\nBOT Created by Katashi`,
+ headerType: 4,
+ imageMessage: ima.message.imageMessage
+ }    
+  await Client.sendMessage(from, ButtonsMessagess, MessageType.buttonsMessage, {quoted : mek})
+ fs.unlinkSync(`./image/cecan/${sender}.jpeg`)
+ } catch (e) {
+  data.reply(`${e}`)
+  }
+  break
                 case 'spotify':
                     try {
                         if(isLimit(data.sender)) return data.reply(mess.limit)
@@ -1369,6 +1534,7 @@ module.exports = handle = (client, Client) => {
                     } else Client.reply(from, 'Wrong format!', message)
                     break
                 case 'wallpaper':
+                case 'wp':
 				    try{
                     if(isLimit(data.sender)) return data.reply(mess.limit)
                     if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}wallpaper [ query ]*\nContoh : ${data.prefix}wallpaper kucing`)
@@ -1463,6 +1629,7 @@ module.exports = handle = (client, Client) => {
                     data.reply(res.data.data.string)
                     break
                 case 'jadwaltv':
+                case 'jtv':
                     if(isLimit(data.sender)) return data.reply(mess.limit)
                     if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}${data.command} [ teks ]*\nContoh : ${data.prefix}${data.command} antv`)
                     data.reply(mess.wait)
@@ -1492,8 +1659,6 @@ module.exports = handle = (client, Client) => {
                     })
                     break
                 case 'linkgroup':
-                case 'linkgc':
-                case 'lgc':
                     if(!data.isGroup) return data.reply(mess.group)
                     if(!data.botIsAdmin) return data.reply(mess.botAdmin)
                     linkgc = await client.groupInviteCode(data.from)
