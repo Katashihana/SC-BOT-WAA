@@ -1318,42 +1318,6 @@ module.exports = handle = (client, Client) => {
                         data.reply(`Maaf jawaban tidak ditemukan`)
                     }
                     break
-case 'google':
-  case 'googles':
-  case 'gs':
-  case 'googlesearch':
-  if(isLimit(data.sender)) return data.reply(mess.limit)
-                        if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}gs [ query ]*\nContoh : ${data.prefix}gs siapa penemu lampu`)
-  data.reply(mess.wait)
-  anu = await fetchJson(`http://api.lolhuman.xyz/api/gsearch?apikey=7ef1e86bd8624c0edd8bd386&query=${q}`, {method: 'get'})
-  teks = `─ 「 *GOOGLE SEARCH* 」 ─\n\n*Hasil Pencarian Dari ${q}*\n\n`
-  o = 1
-  for (let plor of anu.result) {
-   teks += `*${o++}. ${plor.title}*\n*Desc :* ${plor.desc}\n*Link :* ${plor.link}\n━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━\n`
-  }
-  data.reply(teks.trim())
-  break
-case 'igtv': 
-case 'tvig': 
-case 'instagramtv':
-  if(isLimit(data.sender)) return data.reply(mess.limit)
-                        if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}igtv [ link ]*`)
-if (!isUrl) return reply('Linknya?')
-data.reply(mess.wait)
-anu = await fetchJson(`http://lolhuman.herokuapp.com/api/instagram?apikey=7ef1e86bd8624c0edd8bd386
-&url=${q}`, {method: 'get'})
-if (anu.error) return reply(anu.error)
-buffer = await getBuffer(anu.result)
-Client.sendMessage(from,buffer,video,{mimetype: 'video/mp4', quoted: mek})
-break
-case 'tiktokaudio':
-  case 'tiktokmusic':
-  if(isLimit(data.sender)) return data.reply(mess.limit)
-                        if(data.body == "") return data.reply(`Kirim perintah *${data.prefix}tiktokmusik [ link ]*`)
-  if (!isUrl(args[0]) && !args[0].includes('tiktok')) return reply('Link Error')
-  ayo = await getBuffer(`http://api.lolhuman.xyz/api/tiktokmusic?apikey=${lolkey}&url=${args[0]}`)
-  Client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp3', filename: 'TiktokMusic-MUZZABOR.mp3', quoted: mek})
-  break
 case 'delete':
   case 'del':
   case 'd':
